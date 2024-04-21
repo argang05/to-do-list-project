@@ -1,0 +1,28 @@
+<%- include("partials/header.ejs")%>
+
+<body>
+    <div id="page-container">
+    <%if(locals.currentDate){%>
+        <h1> <%= currentDate %> </h1>
+        <div class="content-div" id="content-wrap">
+            <ul>
+                <% for(i = 0; i < newItems.length; i++){%>
+                    <form action="/delete" method="post">
+                        <div class="todo brdr">
+                            <input type="checkbox" value="<%= newItems[i]._id %>" name="cheqbox" id="cheqbox" onchange="this.form.submit()">
+                            <label for="cheqbox"><%= newItems[i].name %></label> <br />
+                        </div>
+                        <input type="hidden" name="listName" value="<%= currentDate %>"></input>
+                    </form>
+                <%}%>
+                <div class="form brdr">
+                <form action="/" method="post">
+                    <input type="text" id="fname" name="newItem" placeholder="Add new item" autocomplete="off" class="frm">
+                    <button type="submit" name="list" value="<%= currentDate %>"><img src="/image/4174487.png" height="35px" alt="add button" /></button>
+                </form>
+                </div>
+            </ul>
+            <%}else{%>
+            <%}%>
+        </div>
+<%- include("partials/footer.ejs")%>
